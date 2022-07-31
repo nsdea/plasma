@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width; height=device-height; initial-scale=1.0">
+    <title>{{ room }}@plasma:~$ </title>
+
+    <link rel="stylesheet" href="style.css">
+
+    {% include '_keys.html' %}
+</head>
+
+<body>
+    <a onclick="window.history.back()"><button>Esc</button></a>
+    <div id="main">
+        <h1># Keys</h1>
+        <p>Press <mark>Enter</mark> to refresh the chat and check for new messages.</p>
+        <p>Press <mark>F11</mark> for the best experience.</p>
+        <p>Press <mark>Esc</mark> to go back.</p>
+
+        <h1># Commands</h1>
+        <p><mark>!info</mark> Displays room statistics.</p>
+        <p><mark>!clear</mark> Deletes all messages in the current chat room.</p>
+        <p><mark>!delete hello</mark> Deletes all messages with the word "hello" in them.</p>
+        <p><mark>!delete 05/15/2022</mark> Deletes all messages in the room written on that date.</p>
+        <p><mark>!rooms</mark> List all rooms.</p>
+        <p><mark>!room gaming</mark> Switch your room to "gaming".</p>
+        
+        <h2>## Misc</h2>
+        <p><mark>!source</mark> Download the backend source code.</p>
+        <p><mark>!export</mark> Export the current chatroom.</p>
+        <p><mark>!import https://cdn-122.anonfiles.com/X122F0g6ya/534833ab-1652621565/root.txt</mark> Import a chatroom file from the URL.</p>
+    </div>
+</body>
+</html>
