@@ -3,18 +3,12 @@
 
 <head>
     <meta name="viewport" content="width=device-width; height=device-height; initial-scale=1.0">
-    <title>{{ room }}@plasma:~$ </title>
+    <title>Google</title>
 
     <link rel="stylesheet" href="style.css">
 
     {% include '_paste.html' %}
     {% include '_keys.html' %}
-
-    <script>
-        $(document).ready(function(){
-            window.history.replaceState('','',window.location.href)
-            });
-    </script>
 </head>
 
 <body>
@@ -31,4 +25,23 @@
     </div>
     <br id="↓">
 </body>
+<script>
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    const inputField = document.getElementById("message");
+
+    const titleBlinking = async () => {
+        while (true) {
+            var currentInput = inputField.value;
+            document.title = `root@plasma:~$ ${currentInput}`;
+            await delay(100);
+
+            var currentInput = inputField.value;
+            document.title = `root@plasma:~$ ${currentInput} |`;
+            await delay(100);
+        }
+    };
+
+    //titleBlinking();
+    
+</script>
 </html>

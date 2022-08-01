@@ -1,5 +1,6 @@
 *.secret
 /.vscode
+data/rooms/*.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

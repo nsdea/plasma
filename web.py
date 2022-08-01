@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 CHAT_FOLDER = 'data/rooms' # without slash at the end
 
 import os
@@ -7,6 +7,7 @@ import flask
 import requests
 import markupsafe
 
+from hashlib import sha256
 from datetime import datetime
 
 app = flask.Flask(__name__, static_url_path='/')
@@ -54,11 +55,14 @@ def room(room):
         text = ''
         for room_name in os.listdir(CHAT_FOLDER):
             if room_name.endswith('.txt'):
-                text += f'{room_name} '
+                text += f'{room_name.replace(".txt", "")} '
 
         chat(room, f'[SYSTEM] Rooms: {text}')
 
     if input_text == '!source':
+        file_hash = sha256(open('web.py').read().encode('utf-8')).hexdigest()
+        chat(room, f'[SYSTEM] web.py is being send with SHA 256 hash <<{file_hash}>>')
+        
         return flask.send_file('web.py')
 
     if input_text == '!export':
@@ -76,6 +80,9 @@ def room(room):
     if input_text == '!clear':
         open(room_file, 'w').write('')
         chat(room, '[SYSTEM] Cleared whole chat.')
+
+    if 'title' in input_text.lower() and 'google' in input_text.lower():
+        chat(room, '[SYSTEM] [AI] The tab\'s title is "Google" for security purposes: other programs won\'t know you\'re using Plasma.')
 
     if input_text == '!info':
         chat(room, '[SYSTEM] Messages: ' + str(len(chat())))
